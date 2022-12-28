@@ -6,61 +6,28 @@ using System.Threading.Tasks;
 
 namespace _1_TypyGeneryczne
 {
-    public class KolejkaKolowa
+    class Program
     {
-        private double[] bufor;
-        private int poczatekBufora;
-        private int koniecBufora;
-
-        public KolejkaKolowa() : this(pojemnosc: 5)
+        public static void Main(string[] args)
         {
+            var kolejka = new KolejkaKolowa(pojemnosc: 3);
 
-        }
-
-        public KolejkaKolowa(int pojemnosc)
-        {
-            bufor = new double[pojemnosc + 1];
-            poczatekBufora = 0;
-            koniecBufora = 0;
-        }
-
-        public void Zapis(double wartosc)
-        {
-            bufor[koniecBufora] = wartosc;
-            koniecBufora = (koniecBufora + 1) % bufor.Length;
-
-            if (koniecBufora == poczatekBufora)
-                poczatekBufora = (poczatekBufora + 1) % bufor.Length;
-        }
-
-        public double Czytaj()
-        {
-            var wynik = bufor[poczatekBufora];
-            poczatekBufora = (poczatekBufora + 1) % bufor.Length;
-            return wynik;
-        }
-
-        public int Pojemnosc
-        {
-            get
+            while(true)
             {
-                return bufor.Length;
+                var wartoscWejsciowa = Console.ReadLine();
+
+                var wartosc = 0.0;
+                if(double.TryParse(wartoscWejsciowa, out wartosc))
+                {
+                    kolejka.Zapisz(wartosc);
+                    continue;
+                }
+                break;
             }
-        }
-
-        public bool JestPusty
-        {
-            get
+            Console.WriteLine("W naszej kolejce jest: ");
+            while (!kolejka.JestPusty)
             {
-                return koniecBufora == poczatekBufora;
-            }
-        }
-
-        public bool JestPelny
-        {
-            get
-            {
-                return (koniecBufora + 1) % bufor.Length == poczatekBufora;
+                Console.WriteLine("\t\t" + kolejka.Czytaj());
             }
         }
     }
