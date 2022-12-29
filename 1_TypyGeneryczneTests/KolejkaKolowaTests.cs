@@ -19,7 +19,7 @@ namespace _1_TypyGeneryczneTests
         public void KolejkaJestPelnaPoTrzechZapisach()
         {
             var kolejka = new KolejkaKolowa(pojemnosc: 3);
-            kolejka.Zapisz(1.1);
+            kolejka.Zapisz("1.1");
             kolejka.Zapisz(2.3);
             kolejka.Zapisz(3.4);
 
