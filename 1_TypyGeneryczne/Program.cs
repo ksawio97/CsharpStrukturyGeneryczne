@@ -10,30 +10,37 @@ namespace _1_TypyGeneryczne
     {
         public static void Main(string[] args)
         {
-            var kolejka = new KolejkaKolowa(pojemnosc: 3);
+            var kolejka = new KolejkaKolowa<double>(pojemnosc: 3);
 
-            while(true)
-            {
-                var wartoscWejsciowa = Console.ReadLine();
-
-                var wartosc = 0.0;
-                if(double.TryParse(wartoscWejsciowa, out wartosc))
-                {
-                    kolejka.Zapisz(wartosc);
-                    continue;
-                }
-                break;
-            }
-            kolejka.Zapisz("Marcepan");
+            var wartosc = 0.0;
+            while (double.TryParse(Console.ReadLine(), out wartosc))
+                kolejka.Zapisz(wartosc);
+            
             var suma = 0.0;
-            Console.WriteLine("W naszej kolejce jest: ");
             while (!kolejka.JestPusty)
-            {
-                var wartosc = kolejka.Czytaj();
-                if(wartosc is double) 
-                    suma += (double)wartosc;
-            }
+                    suma += kolejka.Czytaj();
+            
             Console.WriteLine($"Suma: {suma}");
+
+
+            var kolejkaOsob = new KolejkaKolowa<Osoba>();
+            kolejkaOsob.Zapisz(new Osoba { Imie = "Marcin", Nazwisko = "Nowak" });
+            kolejkaOsob.Zapisz(new Osoba { Imie = "Tomek", Nazwisko = "Nowak" });
+            kolejkaOsob.Zapisz(new Osoba { Imie = "Jacek", Nazwisko = "Nowak" });
+
+            Osoba osoba;
+            while (!kolejkaOsob.JestPusty) 
+            {
+                osoba = kolejkaOsob.Czytaj();
+                Console.WriteLine($"Osoba: {osoba.Imie} {osoba.Nazwisko}");
+            }
         }
+    }
+
+    public class Osoba
+    {
+        public string Imie { get; set; }
+
+        public string Nazwisko { get; set; }
     }
 }
