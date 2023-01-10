@@ -6,7 +6,7 @@
         private int poczatekBufora;
         private int koniecBufora;
 
-        public KolejkaKolowa() : this(pojemnosc: 5)
+        public KolejkaKolowa() : this(pojemnosc: 3)
         {
 
         }
