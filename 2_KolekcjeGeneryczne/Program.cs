@@ -22,33 +22,25 @@ namespace _2_KolekcjeGeneryczne
 
         private static void SortedDictionaryZSortowaniem()
         {
-            var pracownicy = new SortedDictionary<string, SortedSet<Pracownik>>();
+            var pracownicy = new DziałyKolekcja();
 
-            Pracownik createNewPracownik(string imie, string nazwisko) => new Pracownik { Imie = imie, Nazwisko = nazwisko };
-            pracownicy.Add("Sprzedaz", new SortedSet<Pracownik>(new PracownikComparer())
-            {
-                createNewPracownik("Jan", "Kowal"),
-                createNewPracownik("Tomek", "Nowak"),
-                createNewPracownik("Marcin", "Biden"),
-            });
+            Pracownik nowyPracownik(string nazwisko) => new Pracownik { Nazwisko = nazwisko };
 
-            pracownicy.Add("Informatyka", new SortedSet<Pracownik>(new PracownikComparer())
-            {
-                createNewPracownik("Marcin", "Kowal"),
-                createNewPracownik("Tomek", "Kowal")
-            });
+            pracownicy.Add("Sprzedaz", nowyPracownik("Kowal"))
+                .Add("Sprzedaz", nowyPracownik("Nowak"))
+                .Add("Sprzedaz", nowyPracownik("Biden"));
 
-            pracownicy.Add("Ksiegowosc", new SortedSet<Pracownik>(new PracownikComparer())
-            {
-                createNewPracownik("Joanna", "Zloto"),
-                createNewPracownik("Ania", "Niszewicz")
-            });
+            pracownicy.Add("Informatyka", nowyPracownik("Kowal"))
+                .Add("Informatyka", nowyPracownik("Kowal"));
+
+            pracownicy.Add("Ksiengowosc", nowyPracownik("Zloto"))
+                .Add("Ksiengowosc", nowyPracownik("Niszewicz"));
 
             foreach (var dzial in pracownicy)
             {
                 Console.WriteLine($"Ilosc pracownikow w dziale {dzial.Key} wynosi {dzial.Value.Count}");
                 foreach (var pracownik in dzial.Value)
-                    Console.WriteLine("\t" + pracownik.Imie + " " + pracownik.Nazwisko);
+                    Console.WriteLine("\t" + pracownik.Nazwisko);
             }
         }
 
