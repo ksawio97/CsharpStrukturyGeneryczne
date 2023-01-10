@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HashSetTests.cs" />
+    <Compile Include="LinkedListTests.cs" />
     <Compile Include="StosTests.cs" />
     <Compile Include="KolejkaTests.cs" />
     <Compile Include="ListaTests.cs" />
