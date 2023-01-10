@@ -7,21 +7,17 @@ namespace _2_KolekcjeGeneryczne
     {
         static void Main(string[] args)
         {
-            List<Pracownik> pracownicy = new List<Pracownik>
+            Queue<Pracownik> kolejka = new Queue<Pracownik>();
+            kolejka.Enqueue(new Pracownik { Imie = "Marcin", Nazwisko = "Nowak" });
+            kolejka.Enqueue(new Pracownik { Imie = "Marek", Nazwisko = "Nowak" });
+            kolejka.Enqueue(new Pracownik { Imie = "Zosia", Nazwisko = "Nowak" });
+            kolejka.Enqueue(new Pracownik { Imie = "Ola", Nazwisko = "Nowak" });
+
+            while(0 < kolejka.Count)
             {
-                new Pracownik { Imie = "Marcin", Nazwisko = "Nowak"},
-                new Pracownik { Imie = "Jan", Nazwisko = "Nowak" },
-                new Pracownik { Imie = "Tomasz", Nazwisko = "Nowak" }
-            };
-
-            foreach (var pracownik in pracownicy)
+                var pracownik = kolejka.Dequeue();
                 Console.WriteLine(pracownik.Imie + " " + pracownik.Nazwisko);
-            Console.WriteLine("---------");
-
-            pracownicy.Add(new Pracownik { Imie = "Anatol", Nazwisko = "Koszyk" });
-
-            for (int i = 0; i < pracownicy.Count; i++)
-                Console.WriteLine(pracownicy[i].Imie + " " + pracownicy[i].Nazwisko);
+            }
         }
     }
 }
