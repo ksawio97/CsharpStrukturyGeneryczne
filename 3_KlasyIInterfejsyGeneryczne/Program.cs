@@ -1,33 +1,20 @@
 ﻿using System;
 
-namespace _1_TypyGeneryczne
+namespace _3_KlasyIInterfejsyGeneryczne
 {
     class Program
     {
         public static void Main(string[] args)
         {
-            var kolejka = new KolejkaKolowa<double>(pojemnosc: 3);
-
+            var kolejka = new DuzaKolejka<double>();
             WprowadzanieDanych(kolejka);
-            PrzetwarzanieDanych();
-        }
 
-        private static void WprowadzanieDanych(KolejkaKolowa<double> kolejka)
-        {
-            var wartosc = 0.0;
-            while (double.TryParse(Console.ReadLine(), out wartosc))
-                kolejka.Zapisz(wartosc);
-
-            var suma = 0.0;
-            while (!kolejka.JestPusty)
-                suma += kolejka.Czytaj();
-
-            Console.WriteLine($"Suma: {suma}");
-        }
-
-        private static void PrzetwarzanieDanych()
-        {
             var kolejkaOsob = new KolejkaKolowa<Osoba>();
+            PrzetwarzanieDanych(kolejkaOsob);
+        }
+
+        private static void PrzetwarzanieDanych(IKolejka<Osoba> kolejkaOsob)
+        {
             kolejkaOsob.Zapisz(new Osoba { Imie = "Marcin", Nazwisko = "Nowak" });
             kolejkaOsob.Zapisz(new Osoba { Imie = "Tomek", Nazwisko = "Nowak" });
             kolejkaOsob.Zapisz(new Osoba { Imie = "Jacek", Nazwisko = "Nowak" });
@@ -38,6 +25,19 @@ namespace _1_TypyGeneryczne
                 osoba = kolejkaOsob.Czytaj();
                 Console.WriteLine($"Osoba: {osoba.Imie} {osoba.Nazwisko}");
             }
+        }
+
+        private static void WprowadzanieDanych(IKolejka<double> kolejka)
+        {
+            var wartosc = 0.0;
+            while (double.TryParse(Console.ReadLine(), out wartosc))
+                kolejka.Zapisz(wartosc);
+
+            var suma = 0.0;
+            foreach (var item in kolejka)
+                suma += item;
+
+            Console.WriteLine($"Suma: {suma}");
         }
     }
 

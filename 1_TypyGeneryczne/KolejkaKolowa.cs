@@ -1,12 +1,18 @@
-﻿namespace _1_TypyGeneryczne
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _1_TypyGeneryczne
 {
-    public class KolejkaKolowa<T> : IKolejka<T>
+    public class KolejkaKolowa<T>
     {
         private T[] bufor;
         private int poczatekBufora;
         private int koniecBufora;
 
-        public KolejkaKolowa() : this(pojemnosc: 3)
+        public KolejkaKolowa() : this(pojemnosc: 5)
         {
 
         }
