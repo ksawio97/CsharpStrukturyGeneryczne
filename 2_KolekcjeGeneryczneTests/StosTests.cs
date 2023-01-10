@@ -9,11 +9,11 @@ namespace _2_KolekcjeGeneryczneTests
     {
         private Stack<int> StackGenerate(int quantity = 5)
         {
-            Stack<int> kol = new Stack<int>();
+            Stack<int> stos = new Stack<int>();
             for (int i = 1; i <= quantity; i++)
-                kol.Push(i);
+                stos.Push(i);
 
-            return kol;
+            return stos;
         }
 
 
