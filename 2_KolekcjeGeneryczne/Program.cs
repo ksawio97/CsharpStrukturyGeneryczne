@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace _2_KolekcjeGeneryczne
 {
@@ -12,6 +13,46 @@ namespace _2_KolekcjeGeneryczne
             Stos();
             Console.WriteLine();
             HashSet();
+            Console.WriteLine();
+            LinkedList();
+            Console.WriteLine();
+            LinkedList2();
+        }
+
+        private static void LinkedList2()
+        {
+            Console.WriteLine("LinkedList2");
+
+            LinkedList<int> lista = new LinkedList<int>();
+            for (int i = 4; i <= 7; i++)
+                lista.AddFirst(i);
+
+            var firstElement = lista.First;
+            var lastElement = lista.Last;
+
+            lista.AddAfter(firstElement, 10);
+            lista.AddBefore(firstElement, 20);
+
+            var wezel = lista.First;
+
+            while (wezel != null)
+            {
+                Console.WriteLine(wezel.Value);
+                wezel = wezel.Next;
+            }
+        }
+
+        private static void LinkedList()
+        {
+            Console.WriteLine("LinkedList");
+
+            LinkedList<int> lista = new LinkedList<int>();
+            for (int i = 4; i <= 7; i++)
+                lista.AddFirst(i);
+            lista.AddLast(1);
+            lista.AddLast(2);
+            foreach (int num in lista)
+                Console.WriteLine(num);
         }
 
         private static void HashSet()
