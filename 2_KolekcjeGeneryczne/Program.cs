@@ -8,15 +8,23 @@ namespace _2_KolekcjeGeneryczne
     {
         static void Main(string[] args)
         {
-            Kolejka();
-            Console.WriteLine();
-            Stos();
-            Console.WriteLine();
-            HashSet();
-            Console.WriteLine();
-            LinkedList();
-            Console.WriteLine();
-            LinkedList2();
+            //Kolejka();
+            //Console.WriteLine();
+            //Stos();
+            //Console.WriteLine();
+            //HashSet();
+            //Console.WriteLine();
+            //LinkedList();
+            //Console.WriteLine();
+            //LinkedList2();
+
+            var pracownicy = new Dictionary<string, Pracownik>();
+            pracownicy.Add("Nowak", new Pracownik { Nazwisko = "Nowak"});
+            pracownicy.Add("Kowal", new Pracownik { Nazwisko = "Kowal" });
+            pracownicy.Add("Kaczor", new Pracownik { Nazwisko = "Kaczor" });
+
+            foreach (var pracownik in pracownicy)
+                Console.WriteLine("{0}:{1}", pracownik.Key, pracownik.Value.Nazwisko);
         }
 
         private static void LinkedList2()
