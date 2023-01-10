@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
 
 namespace _2_KolekcjeGeneryczne
 {
@@ -8,17 +8,51 @@ namespace _2_KolekcjeGeneryczne
     {
         static void Main(string[] args)
         {
-            Kolejka();
-            Console.WriteLine();
-            Stos();
-            Console.WriteLine();
-            HashSet();
-            Console.WriteLine();
-            LinkedList();
-            Console.WriteLine();
-            LinkedList2();
-            Dictionary();
-            Console.WriteLine();
+            //Kolejka();
+            //Console.WriteLine();
+            //Stos();
+            //Console.WriteLine();
+            //HashSet();
+            //Console.WriteLine();
+            //LinkedList();
+            //Console.WriteLine();
+            //LinkedList2();
+            //Dictionary();
+            //Console.WriteLine();
+            //SortedDictionary();
+            //Console.WriteLine();
+        }
+
+        private static void SortedDictionary()
+        {
+            var pracownicy = new SortedDictionary<string, List<Pracownik>>();
+
+            Pracownik createNewPracownik(string imie, string nazwisko) => new Pracownik { Imie = imie, Nazwisko = nazwisko };
+            pracownicy.Add("Sprzedaz", new List<Pracownik>()
+            {
+                createNewPracownik("Jan", "Kowal"),
+                createNewPracownik("Tomek", "Nowak"),
+                createNewPracownik("Marcin", "Biden"),
+            });
+
+            pracownicy.Add("Informatyka", new List<Pracownik>()
+            {
+                createNewPracownik("Marcin", "Kowal"),
+                createNewPracownik("Tomek", "Wrobel")
+            });
+
+            pracownicy.Add("Ksiegowosc", new List<Pracownik>()
+            {
+                createNewPracownik("Joanna", "Zloto"),
+                createNewPracownik("Ania", "Niszewicz")
+            });
+
+            foreach (var item in pracownicy)
+            {
+                Console.WriteLine($"Ilosc pracownikow w dziale {item.Key} wynosi {item.Value.Count}");
+                foreach (var pracownik in item.Value)
+                    Console.WriteLine("\t" + pracownik.Imie + " : " + pracownik.Nazwisko);
+            }
         }
 
         private static void Dictionary()
