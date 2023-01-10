@@ -8,23 +8,47 @@ namespace _2_KolekcjeGeneryczne
     {
         static void Main(string[] args)
         {
-            //Kolejka();
-            //Console.WriteLine();
-            //Stos();
-            //Console.WriteLine();
-            //HashSet();
-            //Console.WriteLine();
-            //LinkedList();
-            //Console.WriteLine();
-            //LinkedList2();
+            Kolejka();
+            Console.WriteLine();
+            Stos();
+            Console.WriteLine();
+            HashSet();
+            Console.WriteLine();
+            LinkedList();
+            Console.WriteLine();
+            LinkedList2();
+            Dictionary();
+            Console.WriteLine();
+        }
 
-            var pracownicy = new Dictionary<string, Pracownik>();
-            pracownicy.Add("Nowak", new Pracownik { Nazwisko = "Nowak"});
-            pracownicy.Add("Kowal", new Pracownik { Nazwisko = "Kowal" });
-            pracownicy.Add("Kaczor", new Pracownik { Nazwisko = "Kaczor" });
+        private static void Dictionary()
+        {
+            var pracownicy = new Dictionary<string, List<Pracownik>>();
 
-            foreach (var pracownik in pracownicy)
-                Console.WriteLine("{0}:{1}", pracownik.Key, pracownik.Value.Nazwisko);
+            Pracownik createNewPracownik(string nazwisko) => new Pracownik { Nazwisko = nazwisko };
+            pracownicy.Add("Ksiegowosc", new List<Pracownik>() {
+                createNewPracownik("Nowak"),
+                createNewPracownik("Kowal"),
+                createNewPracownik("Kaczor")
+            });
+
+            pracownicy["Ksiegowosc"].Add(createNewPracownik("Nowak"));
+
+            pracownicy.Add("Informatyka", new List<Pracownik>() {
+                createNewPracownik("Kowalski"),
+                createNewPracownik("Bogacki")
+            });
+
+            foreach (var item in pracownicy)
+            {
+                Console.WriteLine($"Dział : {item.Key}");
+                foreach (var pracownik in item.Value)
+                    Console.WriteLine("\t" + pracownik.Nazwisko);
+            }
+
+            Console.WriteLine($"Dział : Ksiegowosc");
+            foreach (var pracownik in pracownicy["Ksiegowosc"])
+                Console.WriteLine("\t" + pracownik.Nazwisko);
         }
 
         private static void LinkedList2()
