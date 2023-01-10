@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace _1_TypyGeneryczne
+﻿namespace _1_TypyGeneryczne
 {
-    public class KolejkaKolowa<T>
+    public class KolejkaKolowa<T> : IKolejka<T>
     {
         private T[] bufor;
         private int poczatekBufora;
