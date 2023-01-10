@@ -9,20 +9,33 @@ namespace _2_KolekcjeGeneryczne
         static void Main(string[] args)
         {
             //Kolejka();
-            //Console.WriteLine();
             //Stos();
-            //Console.WriteLine();
             //HashSet();
-            //Console.WriteLine();
             //LinkedList();
-            //Console.WriteLine();
             //LinkedList2();
             //Dictionary();
-            //Console.WriteLine();
             //SortedDictionary();
-            //Console.WriteLine();
             //SortedList();
-            //Console.WriteLine();
+            //SortedSet();
+        }
+
+        private static void SortedSet()
+        {
+            var set = new SortedSet<int>();
+            foreach (int num in new int[] { 10, 2, 3, 5, 6, 12, 200, 12 })
+                set.Add(num);
+
+            foreach (var item in set)
+                Console.WriteLine(item);
+
+            Console.WriteLine("----");
+
+            var set2 = new SortedSet<string>();
+            foreach (string name in new string[] { "Aga", "Piotr", "Stefan", "Maciek", "Ola" })
+                set2.Add(name);
+
+            foreach (var item in set2)
+                Console.WriteLine(item);
         }
 
         private static void SortedList()
@@ -42,6 +55,7 @@ namespace _2_KolekcjeGeneryczne
 
         private static void SortedDictionary()
         {
+            //mozna zamienic SortedDictionary na SortedList
             var pracownicy = new SortedDictionary<string, List<Pracownik>>();
 
             Pracownik createNewPracownik(string imie, string nazwisko) => new Pracownik { Imie = imie, Nazwisko = nazwisko };
