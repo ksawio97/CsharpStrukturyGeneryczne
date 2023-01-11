@@ -4,17 +4,19 @@ namespace _4_MetodyDelegatyGeneryczne
 {
     class Program
     {
-        static void KonsolaWypisz<T>(T dane)
-        {
-            Console.WriteLine(dane);
-        }
-
         public static void Main(string[] args)
         {
+            Action<double> drukuj = x => Console.WriteLine(x);
+            drukuj(2.3);
+
+            Action<int, int, int> sum3 = (x, y, z) => Console.WriteLine(x + y + z);
+            sum3(1, 2, 3);
+
             var kolejka = new DuzaKolejka<double>();
             WprowadzanieDanych(kolejka);
 
-            kolejka.Drukuj(KonsolaWypisz);
+            //zamiast lambdy mozesz jeszcze uzyc delegate lub Action
+            kolejka.Drukuj(d => Console.WriteLine(d));
 
             var kolejkaOsob = new KolejkaKolowa<Osoba>();
             PrzetwarzanieDanych(kolejkaOsob);
