@@ -6,18 +6,14 @@ namespace _4_MetodyDelegatyGeneryczne
     {
         public static void Main(string[] args)
         {
-            Action<bool> drukuj = x => Console.WriteLine(x);
-            Func<int, int, int, int> sum3 = (x, y, z) => x + y + z;
-            Func<int, int, int> multiplication = (a, b) => a * b;
-            Predicate<int> jestMniejszeOdSto = d => d < 100;
-
-            drukuj(jestMniejszeOdSto(multiplication(sum3(8, 10, 2), sum3(9, 2, 1))));
-
             var kolejka = new DuzaKolejka<double>();
             WprowadzanieDanych(kolejka);
 
-            //zamiast lambdy mozesz jeszcze uzyc delegate lub Action
-            kolejka.Drukuj(d => Console.WriteLine(d));
+            //Converter<double, DateTime> konwerter = d => new DateTime(2018, 1, 1).AddDays(d);
+            var jakoData = kolejka.Mapuj(d => new DateTime(2018, 1, 1).AddDays(d));
+
+            foreach (var item in jakoData)
+                Console.WriteLine(item);
 
             var kolejkaOsob = new KolejkaKolowa<Osoba>();
             PrzetwarzanieDanych(kolejkaOsob);
