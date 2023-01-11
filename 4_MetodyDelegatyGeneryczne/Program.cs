@@ -6,17 +6,23 @@ namespace _4_MetodyDelegatyGeneryczne
     {
         public static void Main(string[] args)
         {
-            var kolejka = new DuzaKolejka<double>();
+            var kolejka = new KolejkaKolowa<double>(pojemnosc: 3);
+            kolejka.elementUsuniety += Kolejka_elementUsuniety;
+
             WprowadzanieDanych(kolejka);
 
-            //Converter<double, DateTime> konwerter = d => new DateTime(2018, 1, 1).AddDays(d);
             var jakoData = kolejka.Mapuj(d => new DateTime(2018, 1, 1).AddDays(d));
-
             foreach (var item in jakoData)
                 Console.WriteLine(item);
 
+
             var kolejkaOsob = new KolejkaKolowa<Osoba>();
             PrzetwarzanieDanych(kolejkaOsob);
+        }
+
+        private static void Kolejka_elementUsuniety(object sender, ElementUsunietyEventArgs<double> e)
+        {
+            Console.WriteLine($"Kolejka jest pełna. Element usunięty to {e.ElementUsuniety} Nowy element to {e.ElementNowy}");
         }
 
         private static void PrzetwarzanieDanych(IKolejka<Osoba> kolejkaOsob)

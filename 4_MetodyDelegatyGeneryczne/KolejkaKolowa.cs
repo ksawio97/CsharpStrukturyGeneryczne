@@ -1,4 +1,6 @@
-﻿namespace _4_MetodyDelegatyGeneryczne
+﻿using System;
+
+namespace _4_MetodyDelegatyGeneryczne
 {
     public class KolejkaKolowa<T> : DuzaKolejka<T>
     {
@@ -14,7 +16,19 @@
             base.Zapisz(wartosc);
 
             if (_pojemnosc < kolejka.Count)
-                kolejka.Dequeue();
+            {
+                var deleted = kolejka.Dequeue();
+                PoUsunieciuElementu(deleted, wartosc);
+            }
+        }
+
+        private void PoUsunieciuElementu(T deleted, T wartosc)
+        {
+            if(deleted != null)
+            {
+                var args = new ElementUsunietyEventArgs<T>(deleted, wartosc);
+                elementUsuniety(this, args);
+            }
         }
 
         public override bool JestPelny
@@ -23,6 +37,20 @@
             {
                 return kolejka.Count == _pojemnosc;
             }
+        }
+
+        public event EventHandler<ElementUsunietyEventArgs<T>> elementUsuniety;
+    }
+
+    public class ElementUsunietyEventArgs<T> : EventArgs
+    {
+        public T ElementUsuniety { get; set; }
+        public T ElementNowy { get; set; }
+
+        public ElementUsunietyEventArgs(T elementUsuniety, T elementNowy)
+        {
+            ElementNowy = elementNowy;
+            ElementUsuniety = elementUsuniety;
         }
     }
 }
