@@ -9,8 +9,12 @@ namespace _4_MetodyDelegatyGeneryczne
             Action<double> drukuj = x => Console.WriteLine(x);
             drukuj(2.3);
 
-            Action<int, int, int> sum3 = (x, y, z) => Console.WriteLine(x + y + z);
+            Action<int, int, int> sum3 = (x, y, z) => drukuj(x + y + z);
             sum3(1, 2, 3);
+
+            //basically same as Action but it returns something
+            Func<int, int, int> multiplication = (a, b) => a * b;
+            drukuj(multiplication(2, 4));
 
             var kolejka = new DuzaKolejka<double>();
             WprowadzanieDanych(kolejka);
