@@ -6,15 +6,12 @@ namespace _4_MetodyDelegatyGeneryczne
     {
         public static void Main(string[] args)
         {
-            Action<double> drukuj = x => Console.WriteLine(x);
-            drukuj(2.3);
-
-            Action<int, int, int> sum3 = (x, y, z) => drukuj(x + y + z);
-            sum3(1, 2, 3);
-
-            //basically same as Action but it returns something
+            Action<bool> drukuj = x => Console.WriteLine(x);
+            Func<int, int, int, int> sum3 = (x, y, z) => x + y + z;
             Func<int, int, int> multiplication = (a, b) => a * b;
-            drukuj(multiplication(2, 4));
+            Predicate<int> jestMniejszeOdSto = d => d < 100;
+
+            drukuj(jestMniejszeOdSto(multiplication(sum3(8, 10, 2), sum3(9, 2, 1))));
 
             var kolejka = new DuzaKolejka<double>();
             WprowadzanieDanych(kolejka);
